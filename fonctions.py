@@ -2,16 +2,22 @@ import numpy as np
 import copy
 
 def etatinitial1():
-    etatinitial = np.array([[1,4,7,0],[2,5,8,0],[3,6,9,0]])
+    etatinitial = np.array([
+                            [1,4,7,0],
+                            [2,5,8,0],
+                            [3,6,9,0]
+                            ])
     return etatinitial
 
 def etatinitial2():
-    etatinitial2 = np.array([[3,6,9,0],[2,5,8,0],[1,4,7,0]])
+    etatinitial2 = np.array([[3,6,9,0],
+                             [2,5,8,0],
+                             [1,4,7,0]
+                             ])
     return etatinitial2
 
 def estEtatBut(etatActuel, etatBut):
-    return (etatActuel == etatBut).all()
-
+    return np.all(etatActuel == etatBut)
 
 def estSommet(etat, ligne, colonne):
     if(ligne == 0 and etat[ligne][colonne]!=0):
@@ -43,7 +49,6 @@ def place_libre(colonne_cube, etat):
     # Renvoie une liste de positions finales possibles
     return list
 
-
 def filsEtat(etat):
     #etatFils = etat
     listFils = []
@@ -53,34 +58,19 @@ def filsEtat(etat):
             if (estSommet(etat, ligne ,colonne)):
                 #Boucle qui donne l'indice des sommets != n
                 list = place_libre(colonne, etat)
-                print(list)
+                #print(list)
                 for coordonne in list:
-                    listFils.append(deplacement([ligne,colonne],coordonne, etat))
+                    moove = deplacement([ligne,colonne],coordonne, etat)
+                    listFils.append(moove)
     return listFils
 
-def pop(list):
-    resultat=list[len(list)-1]
-    list.remove(resultat)
-    return resultat
+#listFilsEtat=filsEtat(etatinitial1())
+#for elem in listFilsEtat:
+#    print("Fils : \n",elem)
 
 
-listFilsEtat=filsEtat(etatinitial1())
-for elem in listFilsEtat:
-    print("Fils : \n",elem)
-
-#etatinitial3=copy.copy(etatinitial1() == etatinitial2())
-#for ligne in range(3):
- #   for colonne in range(4):
-  #      print(etatinitial3[ligne][colonne])
-print(estEtatBut(etatinitial1(),etatinitial2()))
+#print(estEtatBut(etatinitial1(),etatinitial1()))
 #print(etatinitial1())
 #print(place_libre(0, etatinitial1()))
 #print(deplacement([0,0], [2,3], etatinitial1()))
 #print(estSommet(etatinitial1(), 0,2))
-
-list=[1,2,3]
-print(pop(list))
-
-print(list)
-print(pop(list))
-print(list)
