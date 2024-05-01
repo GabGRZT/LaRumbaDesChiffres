@@ -26,16 +26,17 @@ def profondeurDabord(depart, but):
 
 
 depart = np.array([
-                [1,4,7,0],
+                [0,4,7,0],
                 [2,5,8,0],
-                [3,6,9,0]
+                [3,6,9,1]
                 ])
 
 but = np.array([
-                [1,4,7,0],
-                [2,5,8,0],
-                [3,6,9,0]
+                [0,4,7,0],
+                [0,5,8,2],
+                [3,6,9,1]
                 ])
+
 trouve, etat_but = profondeurDabord(depart, but)
 if trouve:
     print("La solution est trouvée : \n", etat_but)
