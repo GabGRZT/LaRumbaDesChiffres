@@ -10,29 +10,29 @@ def profondeurDabord(depart, but):
     while en_attente and not trouve:
         prochain = en_attente.pop()  # On récupère le prochain état à explorer (gestion de pile LIFO)
         vus.append(prochain.tolist())  # On ajoute l'état à la liste des états explorés
-
         if fonctions.estEtatBut(prochain, but):
             trouve = True
             return trouve, prochain  # Retourne vrai et l'état but s'il est trouvé
         else:
-            listFils = fonctions.filsEtat(depart)
+            listFils = fonctions.filsEtat(prochain)
             for etat in listFils:
                 if not(etat.tolist() in vus):  # Convertir etat en tuple
+                    #print("etat\n",etat)
+                    #print("vus\n",vus)
                     en_attente.append(etat)  # Ajoute les nouveaux états à explorer
-
     return False, depart  # Retourne faux si l'état but n'est pas trouvé
 
 
 depart = np.array([
-                [0,4,7,0],
+                [4,1,7,0],
                 [2,5,8,0],
-                [3,6,9,1]
+                [3,6,9,0]
                 ])
 
 but = np.array([
-                [0,4,7,0],
-                [0,5,8,2],
-                [3,6,9,1]
+                [1,4,7,0],
+                [2,5,8,0],
+                [3,6,9,0]
                 ])
 
 trouve, etat_but = profondeurDabord(depart, but)

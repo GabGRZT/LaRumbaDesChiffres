@@ -41,10 +41,10 @@ def place_libre(colonne_cube, etat):
             if(colonne != colonne_cube):
                 # Tant qu'on est pas au point le plus bas du pique (=0)
                 # et qu'on est pas à la fin de la matrice
-                if ligne==2 and etat[ligne][colonne] == 0:
+                if (ligne==2 and etat[ligne][colonne] == 0):
                     list.append(([ligne,colonne]))
                 else:
-                    if etat[ligne][colonne] == 0 and (etat[ligne+1][colonne] != 0 ):
+                    if (etat[ligne][colonne] == 0 and (etat[ligne+1][colonne] != 0)):
                         list.append([ligne, colonne])
     # Renvoie une liste de positions finales possibles
     return list
