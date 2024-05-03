@@ -17,9 +17,7 @@ def profondeurDabord(depart, but):
         else:
             listFils = fonctions.filsEtat(depart)
             for etat in listFils:
-                if etat.tolist() in vus:  # Convertir etat en tuple
-                    pass
-                else:
+                if not(etat.tolist() in vus):  # Convertir etat en tuple
                     en_attente.append(etat)  # Ajoute les nouveaux états à explorer
 
     return False, depart  # Retourne faux si l'état but n'est pas trouvé
