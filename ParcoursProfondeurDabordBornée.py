@@ -18,6 +18,8 @@ def profondeurDabordBornee(depart, but, seuil):
             listFils = fonctions.filsEtat(prochain[0])
             for etat in listFils:
                 if not(etat.tolist() in vus) and (prochain[1]+1)<=seuil:  # Convertir etat en tuple
+                    #print("etat\n", etat)
+                    #print("vus\n", vus)
                     en_attente.append((etat,prochain[1]+1))  # Ajoute les nouveaux états à explorer
     return False, depart  # Retourne faux si l'état but n'est pas trouvé
 
@@ -33,11 +35,11 @@ but = np.array([
                 [3,6,9,0]
                 ])
 
-for seuil in range(10):
-    print("seuil est à",seuil)
-    trouve, etat_but = profondeurDabordBornee(depart,but,seuil)
-    if trouve:
-        print("La solution est trouvée.")
-    else:
-        print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
+#for seuil in range(10):
+#    print("seuil est à",seuil)
+#    trouve, etat_but = profondeurDabordBornee(depart,but,seuil)
+#    if trouve:
+#        print("La solution est trouvée.")
+#    else:
+#        print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
 

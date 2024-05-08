@@ -64,6 +64,17 @@ def filsEtat(etat):
                     listFils.append(moove)
     return listFils
 
+def nombreMalMis(etat,etatBut):
+    nbMalMis=0;
+    comparasionEtatBut=etat == etatBut
+    for ligne in comparasionEtatBut:
+        for booleen in ligne:
+            if not booleen:
+                nbMalMis+=1
+    return nbMalMis
+def fEtat(etat,etatBut,coutCheminParcouru,coutTransition):
+    return (coutCheminParcouru+coutTransition)+(nombreMalMis(etat,etatBut))
+
 #listFilsEtat=filsEtat(etatinitial1())
 #for elem in listFilsEtat:
 #    print("Fils : \n",elem)
