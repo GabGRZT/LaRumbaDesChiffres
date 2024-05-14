@@ -3,16 +3,16 @@ import copy
 
 def etatinitial1():
     etatinitial = np.array([
-                            [1,4,7,"|"],
-                            [2,5,8,"|"],
-                            [3,6,9,"|"]
+                            [1,4,7,0],
+                            [2,5,8,0],
+                            [3,6,9,0]
                             ])
     return etatinitial
 
 def etatinitial2():
-    etatinitial2 = np.array([[3,6,9,"|"],
-                             [2,5,8,"|"],
-                             [1,4,7,"|"]
+    etatinitial2 = np.array([[3,6,9,0],
+                             [2,5,8,0],
+                             [1,4,7,0]
                              ])
     return etatinitial2
 
@@ -31,7 +31,7 @@ def deplacement(pos_cube_init, pos_cube_final, etat):
     etatFils[pos_cube_final[0]][pos_cube_final[1]] = etatFils[pos_cube_init[0]][pos_cube_init[1]]
     etatFils[pos_cube_init[0]][pos_cube_init[1]] = 0
     #print("Etat :",etat)
-    #print("Etat fils:",etatFils)
+    #print("Etat fils:",etatFils)A
     return etatFils
 
 def place_libre(colonne_cube, etat):

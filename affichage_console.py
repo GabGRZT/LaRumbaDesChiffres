@@ -1,15 +1,15 @@
-def afficheCouleur(etat):
+def afficheCouleur(nom,etat):
     print(nom,":")
     for tige in etat:
         for cube in tige:
-            if cube == "|":
+            if cube == 0:
                 print(" |" ,end="")  # Pour les emplacements vides
-            elif cube in ["1", "2", "3"]:
-                print("\033[93m {}\033[00m".format(cube), end="")
-            elif cube in ["4", "5", "6"]:
-                print("\033[34m {}\033[00m".format(cube), end="")
-            elif cube in ["7", "8", "9"]:
-                print("\033[91m {}\033[00m".format(cube), end="")
+            elif cube in [1, 2, 3]:
+                print("\033[93m {}\033[00m".format(str(cube)), end="")
+            elif cube in [4, 5, 6]:
+                print("\033[34m {}\033[00m".format(str(cube)), end="")
+            elif cube in [7, 8, 9]:
+                print("\033[91m {}\033[00m".format(str(cube)), end="")
         print()  # Permet de faire un retour à la ligne
 
 # Exemple d'utilisation :

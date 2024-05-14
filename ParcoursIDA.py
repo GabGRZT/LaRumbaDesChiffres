@@ -32,6 +32,7 @@ def profondeurBornee(depart, but, s):
     else:
         seuil=nSeuil
         return False
+
 def ida(depart, but):
     global solution
     global seuil
@@ -42,18 +43,18 @@ def ida(depart, but):
         termine=profondeurBornee(depart, but, seuil)
     return solution
 
-depart = np.array([
-                [1,4,7,0],
-                [2,5,8,0],
-                [3,6,9,0]
-                ])
+#depart = np.array([
+#                [1,4,7,0],
+#                [2,5,8,0],
+#                [3,6,9,0]
+#                ])
 
-but = np.array([
-                [4,1,7,0],
-                [2,5,8,0],
-                [3,6,9,0]
-                ])
+#but = np.array([
+#                [4,1,7,0],
+#                [2,5,8,0],
+#                [3,6,9,0]
+#                ])
 
-seuil=0
-solution=None
-print(ida(depart,but))
+#seuil=0
+#solution=None
+#print(ida(depart,but))
