@@ -13,36 +13,59 @@ def profondeurDabord(depart, but):
     while iterations != 4:
         prochain = en_attente.pop()  # On récupère le prochain état à explorer (gestion de pile LIFO)
         vus.append(prochain)  # On ajoute l'état à la liste des états explorés
-        if Etat.est_etat_but(prochain, but):
+# <<<<<<< Updated upstream
+#         if Etat.est_etat_but(prochain, but):
+# =======
+        if fonctions.estEtatBut(prochain, but):
             trouve = True
             return trouve, prochain  # Retourne vrai et l'état but s'il est trouvé
         else:
             listFils = Etat.fils_etat(prochain)
             for etat in listFils:
-                if etat not in vus:  # Convertir etat en tuple
-                    #print("etat\n",etat)
-                    #print("vus\n",vus)
-                    en_attente.insert(0,etat)  # Ajoute les nouveaux états à explorer
-        iterations += 1
-        print("Iteration :", iterations )
-        afficheCouleur(etat)
+# <<<<<<< Updated upstream
+#                 if etat not in vus:  # Convertir etat en tuple
+#                     #print("etat\n",etat)
+#                     #print("vus\n",vus)
+#                     en_attente.insert(0,etat)  # Ajoute les nouveaux états à explorer
+#         iterations += 1
+#         print("Iteration :", iterations )
+#         afficheCouleur(etat)
+# =======
+                print(vus.__len__())
+                try:
+                    vus.index(etat)
+                    break;
+                except ValueError:
+                        #print(etat)
+                        en_attente.append(etat)  # Ajoute les nouveaux états à explorer
     return False, depart  # Retourne faux si l'état but n'est pas trouvé
 
 
 # Création d'un état initial
-depart = Etat([
+departEtat = Etat([
     ["1", "4", "7", "|"],
     ["2", "5", "8", "|"],
     ["3", "6", "9", "|"]
 ])
 
 # Création d'un état but
-but = Etat([
+butEtat = Etat([
     ["|", "4", "7", "3"],
     ["|", "5", "8", "2"],
     ["|", "6", "9", "1"]
 ])
 
+depart = np.array([
+                [4,1,7,0],
+                [2,5,8,0],
+                [3,6,9,0]
+                ])
+
+but = np.array([
+                [0,0,7,0],
+                [2,5,8,1],
+                [3,6,9,4]
+                ])
 trouve, etat_but = profondeurDabord(depart, but)
 if trouve:
     print("La solution est trouvée : \n", etat_but)
