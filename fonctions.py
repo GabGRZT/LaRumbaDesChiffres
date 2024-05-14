@@ -3,16 +3,16 @@ import copy
 
 def etatinitial1():
     etatinitial = np.array([
-                            [1,4,7,0],
-                            [2,5,8,0],
-                            [3,6,9,0]
+                            [1,4,7,"|"],
+                            [2,5,8,"|"],
+                            [3,6,9,"|"]
                             ])
     return etatinitial
 
 def etatinitial2():
-    etatinitial2 = np.array([[3,6,9,0],
-                             [2,5,8,0],
-                             [1,4,7,0]
+    etatinitial2 = np.array([[3,6,9,"|"],
+                             [2,5,8,"|"],
+                             [1,4,7,"|"]
                              ])
     return etatinitial2
 
@@ -41,10 +41,10 @@ def place_libre(colonne_cube, etat):
             if(colonne != colonne_cube):
                 # Tant qu'on est pas au point le plus bas du pique (=0)
                 # et qu'on est pas à la fin de la matrice
-                if ligne==2 and etat[ligne][colonne] == 0:
+                if (ligne==2 and etat[ligne][colonne] == 0):
                     list.append(([ligne,colonne]))
                 else:
-                    if etat[ligne][colonne] == 0 and (etat[ligne+1][colonne] != 0 ):
+                    if (etat[ligne][colonne] == 0 and (etat[ligne+1][colonne] != 0)):
                         list.append([ligne, colonne])
     # Renvoie une liste de positions finales possibles
     return list
@@ -64,9 +64,24 @@ def filsEtat(etat):
                     listFils.append(moove)
     return listFils
 
+def nombreMalMis(etat,etatBut):
+    nbMalMis=0;
+    comparasionEtatBut=etat == etatBut
+    for ligne in comparasionEtatBut:
+        for booleen in ligne:
+            if not booleen:
+                nbMalMis+=1
+    return nbMalMis
+def fEtat(etat,etatBut,coutCheminParcouru,coutTransition):
+    return (coutCheminParcouru+coutTransition)+(nombreMalMis(etat,etatBut))
+
 #listFilsEtat=filsEtat(etatinitial1())
 #for elem in listFilsEtat:
 #    print("Fils : \n",elem)
+
+#print(filsEtat( [0,4,7,0],
+#                [2,5,8,0],
+#               [3,6,9,1]))
 
 
 #print(estEtatBut(etatinitial1(),etatinitial1()))
