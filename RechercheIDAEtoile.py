@@ -2,10 +2,14 @@ import numpy as np
 import fonctions
 from affichage_console import afficheCouleur
 
-
+def dejaVu(etat,liste):
+    for elem in liste:
+        if (etat==elem).all():
+            return True
+    return False
 def profondeurBornee(depart, but, s):
     en_attente = [(depart,0,0)]  # Liste des états non encore explorés, avec leur profondeur et g(e)
-    vus = []  # Liste des états déjà explorés
+    vus = set()  # Liste des états déjà explorés
     nSeuil=1000
     global seuil
     global solution
@@ -14,16 +18,22 @@ def profondeurBornee(depart, but, s):
 
     while en_attente:
         prochain = en_attente.pop(0)  # On récupère le prochain état à explorer (gestion de pile LIFO)
+<<<<<<< HEAD
         vus.insert(0,prochain[0])  # On ajoute l'état à la liste des états explorés
+=======
+        vus.add(tuple(map(tuple,prochain[0])))  # On ajoute l'état à la liste des états explorés
+>>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
         nbEtatDeveloppes+=1
         if fonctions.estEtatBut(prochain[0], but):
+            print("Bravo champion t'as trouvé la solution")
             solution=prochain[0]
-            return True,nbEtatCree,nbEtatDeveloppes  # Retourne vrai+nbEtatCree+nbEtatDevellopes
+            return True,nbEtatCree,nbEtatDeveloppes  # Retourne vrai+nbEtatCree+nbEtatDeveloppes
         else:
             listFils = fonctions.filsEtat(prochain[0])
             nbEtatCree+=listFils.__len__()
             for etat in listFils:
                 heuristique=(fonctions.fEtat(etat,but,prochain[2],1))
+<<<<<<< HEAD
                 try:
                     vus.index(etat)
                     break;
@@ -32,6 +42,12 @@ def profondeurBornee(depart, but, s):
                         en_attente.insert(0,(etat, prochain[1] + 1,heuristique))  # Ajoute les nouveaux états à explorer
                     else:
                         nSeuil=min(nSeuil,heuristique)
+=======
+                if (not(tuple(map(tuple,etat)) in vus)) and (heuristique<=s):
+                    en_attente.insert(0,(etat, prochain[1] + 1, heuristique))  # Ajoute les nouveaux états à explorer
+                else:
+                    nSeuil=min(nSeuil,heuristique)
+>>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
     if nSeuil==1000:
         return True,nbEtatCree,nbEtatDeveloppes
     else:
@@ -41,17 +57,25 @@ def profondeurBornee(depart, but, s):
 def ida(depart, but):
     global solution
     global seuil
-    nbIteration=0;
+    nbIteration=0
     tableauNombredeNoeud=[]
     tableauNombreEtatDeveloppe=[]
-    solution=None;
+    solution=None
     seuil=fonctions.fEtat(depart,but,0,1)
     resultat=False,None,None
     while not resultat[0]:
         resultat=profondeurBornee(depart, but, seuil)
+        tableauNombredeNoeud.append(resultat[1])
+        tableauNombreEtatDeveloppe.append(resultat[2])
         nbIteration+=1
+<<<<<<< HEAD
 
     return solution,nbIteration
+=======
+        if nbIteration%1000==0:
+            print(nbIteration)
+    return solution,nbIteration,tableauNombredeNoeud,tableauNombreEtatDeveloppe
+>>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
 
 
 #1,2,3: 1J,2J,3J
@@ -110,6 +134,7 @@ seuil=0
 solution=None
 
 probleme1=ida(situationInitiale1,but1)
+<<<<<<< HEAD
 afficheCouleur("situation initiale 1",situationInitiale1)
 afficheCouleur("Solution problème 1",probleme1[0])
 print("Nombre d'iteration : ",probleme1[1],"\n")
@@ -135,5 +160,28 @@ print("\nNombre d'iteration : ",probleme5[1],"\n")
 #probleme6=ida(situationInitiale2,but6)
 #print("Solution problème 6\n",afficheCouleur(probleme6[0]),"\nNombre d'iteration : ",probleme6[1])
 
+=======
+print("Solution problème 1\n",probleme1[0],"\nNombre d'iteration",probleme1[1],"\nNombre Etat créer",probleme1[2],"\nNombre Etat developpés",probleme1[3])
 
+probleme2=ida(situationInitiale1,but2)
+print("Solution problème 2\n",probleme2[0],"\nNombre d'iteration",probleme2[1],"\nNombre Etat créer",probleme2[2],"\nNombre Etat developpés",probleme2[3])
+
+probleme3=ida(situationInitiale2,but3)
+print("Solution problème 3\n",probleme3[0],"\nNombre d'iteration",probleme3[1],"\nNombre Etat créer",probleme3[2],"\nNombre Etat developpés",probleme3[3])
+
+probleme4=ida(situationInitiale2,but4)
+print("Solution problème 4\n",probleme4[0],"\nNombre d'iteration",probleme4[1],"\nNombre Etat créer",probleme4[2],"\nNombre Etat developpés",probleme4[3])
+
+probleme5=ida(situationInitiale2,but5)
+print("Solution problème 5\n",probleme5[0],"\nNombre d'iteration",probleme5[1],"\nNombre Etat créer",probleme5[2],"\nNombre Etat developpés",probleme5[3])
+
+probleme6=ida(situationInitiale2,but6)
+print("Solution problème 6\n",probleme6[0],"\nNombre d'iteration",probleme6[1],"\nNombre Etat créer",probleme6[2],"\nNombre Etat developpés",probleme6[3])
+>>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
+
+# bon=[]
+# bon.append(but1)
+# bon.append(but2)
+#
+# print(dejaVu(but2,bon))
 
