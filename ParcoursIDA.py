@@ -1,7 +1,7 @@
 import numpy as np
 import copy
 import fonctions
-import ParcoursProfondeurBornée
+import ParcoursProfondeurDabordBornée
 
 
 def profondeurBornee(depart, but, seuil):
@@ -31,7 +31,6 @@ def profondeurBornee(depart, but, seuil):
     else:
         seuil=nSeuil
         return False
-
 def ida(depart, but):
     solution=None;
     seuil=fonctions.fEtat(depart,but,0,1)

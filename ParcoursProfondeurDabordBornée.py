@@ -8,7 +8,7 @@ def profondeurDabordBornee(depart, but, seuil):
     vus = []  # Liste des états déjà explorés
     trouve = False
 
-    while en_attente != [] and not trouve:
+    while en_attente and not trouve:
         prochain = en_attente.pop()  # On récupère le prochain état à explorer (gestion de pile LIFO)
         vus.append(prochain[0].tolist())  # On ajoute l'état à la liste des états explorés
         if fonctions.estEtatBut(prochain[0], but):
@@ -35,10 +35,11 @@ but = np.array([
                 [3,6,9,0]
                 ])
 
-for seuil in range(10):
-    print("seuil est à",seuil)
-    trouve, etat_but = profondeurDabordBornee(depart,but,seuil)
-    if trouve:
-        print("La solution est trouvée.")
-    else:
-        print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
+#for seuil in range(10):
+#    print("seuil est à",seuil)
+#    trouve, etat_but = profondeurDabordBornee(depart,but,seuil)
+#    if trouve:
+#        print("La solution est trouvée.")
+#    else:
+#        print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
+
