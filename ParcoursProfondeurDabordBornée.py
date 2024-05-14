@@ -1,5 +1,4 @@
 import numpy as np
-import copy
 import fonctions
 
 def dejaVu(etat,listeVu):
@@ -12,7 +11,7 @@ def profondeurDabordBornee(depart, but, seuil):
     trouve = False
 
     while en_attente and not trouve:
-        prochain = en_attente.pop(0)  # On récupère le prochain état à explorer (gestion de pile LIFO)
+        prochain = en_attente.pop()  # On récupère le prochain état à explorer (gestion de pile LIFO)
         vus.add(tuple(map(tuple,prochain[0])))
         if fonctions.estEtatBut(prochain[0], but):
             trouve = True
@@ -21,39 +20,10 @@ def profondeurDabordBornee(depart, but, seuil):
             listFils = fonctions.filsEtat(prochain[0])
             for etat in listFils:
                 if not(tuple(map(tuple,etat)) in vus) and (prochain[1]+1)<=seuil:
-                    en_attente.insert(0,(etat, prochain[1] + 1))  # Ajoute les nouveaux états à explorer
+                    en_attente.append((etat, prochain[1] + 1))  # Ajoute les nouveaux états à explorer
     return False, depart  # Retourne faux si l'état but n'est pas trouvé
 
-<<<<<<< HEAD
-#depart = np.array([
-#                [4,1,7,0],
-#                [2,5,8,0],
-#                [3,6,9,0]
-#                ])
 
-#but1 = np.array([
-#                [0,0,7,0],
-#                [2,5,8,1],
-#                [3,6,9,4]
-#                ])
-#but2 = np.array([
-#                [1,4,7,0],
-#                [2,5,8,0],
-#                [3,6,9,0]
-#                ])
-
-#for seuil in range(10):
-#     print("seuil est à",seuil)
-#     trouve, etat_but = profondeurDabordBornee(depart,but2,seuil)
-#     if trouve:
-#         print("La solution est trouvée.")
-#     else:
-#         print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
-#list=[]
-#list.append(depart)
-#list.append(but1)
-#for elem in list:
-=======
 depart = np.array([
                 [1,4,7,0],
                 [2,5,8,0],
@@ -65,11 +35,13 @@ but1 = np.array([
                 [2,5,8,1],
                 [3,6,9,4]
                 ])
+
 but2 = np.array([
                 [0,4,7,0],
                 [2,5,1,0],
                 [3,6,9,8]
                 ])
+
 but3 = np.array([
                 [7,8,1,0],
                 [2,4,5,0],
@@ -81,30 +53,30 @@ but4 = np.array([
                 [1,4,7,0],
                 [3,6,9,0]
                 ])
+
 but5 = np.array([
                 [8,0,5,0],
                 [2,4,7,0],
                 [3,6,9,1]
                 ])
+
 but6 = np.array([
                 [1,2,3,0],
                 [7,8,9,0],
                 [4,5,6,0]
                 ])
 
-seuil=25
-#for seuil in range(20):
-print("seuil est à",seuil)
-trouve, etat_but = profondeurDabordBornee(depart,but4,seuil)
-if trouve:
-    print("La solution est trouvée.")
-else:
-    print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
+for seuil in range(11):
+    print("seuil est à",seuil)
+    trouve, etat_but = profondeurDabordBornee(depart,but1,seuil)
+    if trouve:
+        print("La solution est trouvée.")
+    else:
+        print("Aucune solution trouvée dans la profondeur maximale spécifiée.")
 # list=[]
 # list.append(depart)
 # list.append(but1)
 # for elem in list:
->>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
 #     if (elem==but1).all():
 #         print("Ben il l'a trouvé")
 #print(list.count(depart))

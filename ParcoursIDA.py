@@ -3,14 +3,14 @@ import fonctions
 
 
 def profondeurBornee(depart, but, s):
-    en_attente = [(depart,0,0)]  # Liste des états non encore explorés, avec leur profondeur et g(e)
+    en_attente = [(depart,0,fonctions.fEtat(depart,but,0,1))]  # Liste des états non encore explorés, avec leur profondeur et g(e)
     vus = set()  # Liste des états déjà explorés
     nSeuil=1000
     global seuil
     global solution
 
     while en_attente:
-        prochain = en_attente.pop(0)  # On récupère le prochain état à explorer (gestion de pile LIFO)
+        prochain = en_attente.pop()  # On récupère le prochain état à explorer (gestion de pile LIFO)
         vus.add(tuple(map(tuple,prochain[0])))  # On ajoute l'état à la liste des états explorés
         if fonctions.estEtatBut(prochain[0], but):
             solution=prochain[0]
@@ -19,8 +19,8 @@ def profondeurBornee(depart, but, s):
             listFils = fonctions.filsEtat(prochain[0])
             for etat in listFils:
                 heuristique=(fonctions.fEtat(etat,but,prochain[2],1))
-                if not (tuple(map(tuple,etat))in vus) and ((heuristique)<=s):
-                    en_attente.insert(0,(etat, prochain[1] + 1,heuristique))  # Ajoute les nouveaux états à explorer
+                if not (tuple(map(tuple,etat)) in vus) and ((heuristique)<=s):
+                    en_attente.append((etat, prochain[1] + 1,heuristique))  # Ajoute les nouveaux états à explorer
                 else:
                     nSeuil=min(nSeuil,heuristique)
     if nSeuil==1000:
@@ -43,23 +43,18 @@ def ida(depart, but):
             print(i)
     return solution
 
-#depart = np.array([
-#                [1,4,7,0],
-#                [2,5,8,0],
-#                [3,6,9,0]
-#                ])
+depart = np.array([
+               [1,4,7,0],
+               [2,5,8,0],
+               [3,6,9,0]
+               ])
 
-<<<<<<< HEAD
-#but = np.array([
-#                [4,1,7,0],
-#                [2,5,8,0],
-#                [3,6,9,0]
-#                ])
+but = np.array([
+               [4,1,7,0],
+               [2,5,8,0],
+               [3,6,9,0]
+               ])
 
-#seuil=0
-#solution=None
-#print(ida(depart,but))
-=======
 but3 = np.array([
                 [7,8,1,0],
                 [2,4,5,0],
@@ -83,5 +78,4 @@ but6 = np.array([
                 ])
 seuil=0
 solution=None
-print(ida(depart,but3))
->>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
+print(ida(depart,but))

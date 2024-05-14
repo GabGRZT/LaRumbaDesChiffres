@@ -30,11 +30,6 @@ def deplacement(pos_cube_init, pos_cube_final, etat):
     etatFils=copy.copy(etat)
     etatFils[pos_cube_final[0]][pos_cube_final[1]] = etatFils[pos_cube_init[0]][pos_cube_init[1]]
     etatFils[pos_cube_init[0]][pos_cube_init[1]] = 0
-<<<<<<< HEAD
-    #print("Etat :",etat)
-    #print("Etat fils:",etatFils)A
-=======
->>>>>>> 68a6d1692b205195c578b3d7fa4ea7a568bb54ff
     return etatFils
 
 def place_libre(colonne_cube, etat):

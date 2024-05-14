@@ -93,7 +93,7 @@ etat_but = Etat([
 ])
 
 # Affichage de l'état initial
-etat_initial.afficheCouleur("État initial")
+#etat_initial.afficheCouleur("État initial")
 
 # Vérification si l'état initial est l'état but
 #print("Est l'état but :", etat_initial.est_etat_but(etat_but))
@@ -107,7 +107,7 @@ etat_initial.afficheCouleur("État initial")
 
 
 # Recherche des fils de l'état initial
-liste_fils = etat_initial.fils_etat()
+#liste_fils = etat_initial.fils_etat()
 
 # Calcul du nombre de pièces mal placées
 #print("Nombre de pièces mal placées par rapport à l'état but :", etat_initial.heuristique(etat_but))
