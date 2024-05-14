@@ -6,13 +6,13 @@ from affichage_console import afficheCouleur
 
 def profondeurDabord(depart, but):
     en_attente = [depart]  # Liste des états non encore explorés
-    vus = []  # Liste des états déjà explorés
+    vus = set()  # Liste des états déjà explorés
     trouve = False
     iterations = 1
 
     while iterations != 4:
-        prochain = en_attente.pop()  # On récupère le prochain état à explorer (gestion de pile LIFO)
-        vus.append(prochain)  # On ajoute l'état à la liste des états explorés
+        prochain = en_attente.pop(0)  # On récupère le prochain état à explorer (gestion de pile LIFO)
+        vus.add(tuple(map(tuple,prochain)))  # On ajoute l'état à la liste des états explorés
 # <<<<<<< Updated upstream
 #         if Etat.est_etat_but(prochain, but):
 # =======
@@ -31,13 +31,8 @@ def profondeurDabord(depart, but):
 #         print("Iteration :", iterations )
 #         afficheCouleur(etat)
 # =======
-                print(vus.__len__())
-                try:
-                    vus.index(etat)
-                    break;
-                except ValueError:
-                        #print(etat)
-                        en_attente.append(etat)  # Ajoute les nouveaux états à explorer
+                if (tuple(map(tuple,etat)) in vus):
+                    en_attente.insert(0,etat)  # Ajoute les nouveaux états à explorer
     return False, depart  # Retourne faux si l'état but n'est pas trouvé
 
 

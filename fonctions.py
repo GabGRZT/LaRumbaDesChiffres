@@ -30,8 +30,6 @@ def deplacement(pos_cube_init, pos_cube_final, etat):
     etatFils=copy.copy(etat)
     etatFils[pos_cube_final[0]][pos_cube_final[1]] = etatFils[pos_cube_init[0]][pos_cube_init[1]]
     etatFils[pos_cube_init[0]][pos_cube_init[1]] = 0
-    #print("Etat :",etat)
-    #print("Etat fils:",etatFils)
     return etatFils
 
 def place_libre(colonne_cube, etat):
@@ -58,7 +56,6 @@ def filsEtat(etat):
             if (estSommet(etat, ligne ,colonne)):
                 #Boucle qui donne l'indice des sommets != n
                 list = place_libre(colonne, etat)
-                #print(list)
                 for coordonne in list:
                     moove = deplacement([ligne,colonne],coordonne, etat)
                     listFils.append(moove)
